@@ -1,11 +1,76 @@
 import React from 'react';
+import { ManagementToolNav } from '../../../common/components'
+import { TextField } from '../../../common/components'
+
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function RegisterTemplate(props) {
     const { navigateLogin } = props.viewStore;
     return (
         <div>
+            <ManagementToolNav />
             <h1>Register</h1>
-            <button onClick={navigateLogin}>Go to Login</button>
+            <Container>
+                <Row>
+                    <Col>
+                        <Form>
+                            <h2>User</h2>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.userForm.$('email')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'password'} field={props.viewStore.userForm.$('password')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'password'} field={props.viewStore.userForm.$('confirmPassword')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.userForm.$('companyKey')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Text></Form.Text>
+                            </Form.Group>
+                            <Form.Group>
+                                <Button type='submit' variant='btn btn-dark' onClick={props.viewStore.userForm.onSubmit}>Create User</Button>
+                            </Form.Group>
+                        </Form>
+                    </Col>
+                    <Col>
+                        <Form>
+                            <h2>Company</h2>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.companyForm.$('email')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'password'} field={props.viewStore.companyForm.$('password')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'password'} field={props.viewStore.companyForm.$('confirmPassword')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyName')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyAddress')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyCity')} />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Text></Form.Text>
+                            </Form.Group>
+                            <Form.Group>
+                                <Button type='submit' variant='btn btn-dark' onClick={props.viewStore.companyForm.onSubmit}>Create Company</Button>
+                            </Form.Group>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+            <Button variant="btn btn-light" onClick={navigateLogin}>Go to Login</Button>
         </div>
     )
 }
