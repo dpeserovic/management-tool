@@ -1,14 +1,15 @@
 import { LoginForm } from '../forms';
+import Axios from 'axios';
 class LoginViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.form = new LoginForm({
-            onSuccess: async(form) => {
+            onSuccess: async (form) => {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-
-                } catch(e) {
+                    const users = await Axios.get('http://localhost:3001/api/get/users');
+                } catch (e) {
                     this.form.invalidate(e.message);
                 }
             },
