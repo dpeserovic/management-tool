@@ -1,3 +1,14 @@
+import { RouterState } from 'mobx-state-router';
+
+const checkForUserSession = (fromState, toState, routerStore) => {
+    if (JSON.parse(sessionStorage.getItem('user'))) {
+        return Promise.resolve();
+    }
+    else {
+        return Promise.reject(new RouterState('login'));
+    }
+}
+
 export const routes = [
     {
         name: 'login',
@@ -6,6 +17,11 @@ export const routes = [
     {
         name: 'register',
         pattern: '/register'
+    },
+    {
+        name: 'dashboard',
+        pattern: '/dashboard',
+        beforeEnter: checkForUserSession
     },
     {
         name: 'notFound',

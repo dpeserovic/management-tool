@@ -1,5 +1,5 @@
 import { LoginForm } from '../forms';
-import Axios from 'axios';
+
 class LoginViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
@@ -8,7 +8,7 @@ class LoginViewStore {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-                    const users = await Axios.get('http://localhost:3001/api/get/users');
+                    this.rootStore.authStore.logIn(values);
                 } catch (e) {
                     this.form.invalidate(e.message);
                 }

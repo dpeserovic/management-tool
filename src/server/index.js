@@ -24,6 +24,36 @@ app.get('/api/get/users', (req, res) => {
     })
 })
 
+app.post('/api/create/user', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const companyId = req.body.companyId;
+    const isOwner = req.body.isOwner;
+    db.query('INSERT INTO users (email, password, companyId, isOwner) VALUES (?,?,?,?)', [email, password, companyId, isOwner], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send('Values inserted!');
+        }
+    })
+})
+
+app.post('/api/create/company', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const companyId = req.body.companyId;
+    const isOwner = req.body.isOwner;
+    db.query('INSERT INTO users (email, password, companyId, isOwner) VALUES (?,?,?,?)', [email, password, companyId, isOwner], (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send('Values inserted!');
+        }
+    })
+})
+
 app.listen(3001, () => {
     console.log("Running server on port 3001!");
 })

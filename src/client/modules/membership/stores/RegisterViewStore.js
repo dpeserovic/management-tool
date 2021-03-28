@@ -1,5 +1,6 @@
 import { RegisterUserForm } from '../forms';
 import { RegisterCompanyForm } from '../forms';
+import Axios from 'axios';
 class RegisterViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
@@ -8,7 +9,14 @@ class RegisterViewStore {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-
+                    Axios.post('http://localhost:3001/api/create/user', {
+                        email: values.email,
+                        password: values.password,
+                        companyId: values.companyKey,
+                        isOwner: 0
+                    }).then(() => {
+                        console.log('Success!');
+                    })
                 } catch(e) {
                     this.form.invalidate(e.message);
                 }
@@ -23,7 +31,6 @@ class RegisterViewStore {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-
                 } catch(e) {
                     this.form.invalidate(e.message);
                 }

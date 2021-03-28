@@ -3,11 +3,13 @@ import { inject, observer } from 'mobx-react';
 import { RouterView } from 'mobx-state-router';
 import { Login } from './client/modules/membership/pages';
 import { Register } from './client/modules/membership/pages';
+import { Dashboard } from './client/modules/dashboard/pages';
 import { NotFound } from './NotFound';
 
 const viewMap = {
   login: <Login />,
   register: <Register />,
+  dashboard: <Dashboard />,
   notFound: <NotFound />
 }
 
