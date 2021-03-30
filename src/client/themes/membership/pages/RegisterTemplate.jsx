@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function RegisterTemplate(props) {
-    const { navigateLogin } = props.viewStore;
+    const { navigateLogin, userForm, companyForm } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -20,22 +20,22 @@ function RegisterTemplate(props) {
                         <Form>
                             <h2>User</h2>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.userForm.$('email')} />
+                                <TextField type={'text'} field={userForm.$('email')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'password'} field={props.viewStore.userForm.$('password')} />
+                                <TextField type={'password'} field={userForm.$('password')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'password'} field={props.viewStore.userForm.$('confirmPassword')} />
+                                <TextField type={'password'} field={userForm.$('confirmPassword')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.userForm.$('companyKey')} />
+                                <TextField type={'text'} field={userForm.$('companyKey')} />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Text></Form.Text>
+                                <Form.Text>{userForm.error}</Form.Text>
                             </Form.Group>
                             <Form.Group>
-                                <Button type='submit' variant='btn btn-dark' onClick={props.viewStore.userForm.onSubmit}>Create User</Button>
+                                <Button type='submit' variant='btn btn-dark' onClick={userForm.onSubmit}>Create User</Button>
                             </Form.Group>
                         </Form>
                     </Col>
@@ -43,28 +43,28 @@ function RegisterTemplate(props) {
                         <Form>
                             <h2>Company</h2>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.companyForm.$('email')} />
+                                <TextField type={'text'} field={companyForm.$('email')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'password'} field={props.viewStore.companyForm.$('password')} />
+                                <TextField type={'password'} field={companyForm.$('password')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'password'} field={props.viewStore.companyForm.$('confirmPassword')} />
+                                <TextField type={'password'} field={companyForm.$('confirmPassword')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyName')} />
+                                <TextField type={'text'} field={companyForm.$('companyName')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyAddress')} />
+                                <TextField type={'text'} field={companyForm.$('companyAddress')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={props.viewStore.companyForm.$('companyCity')} />
+                                <TextField type={'text'} field={companyForm.$('companyCity')} />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Text></Form.Text>
+                                <Form.Text>{companyForm.error}</Form.Text>
                             </Form.Group>
                             <Form.Group>
-                                <Button type='submit' variant='btn btn-dark' onClick={props.viewStore.companyForm.onSubmit}>Create Company</Button>
+                                <Button type='submit' variant='btn btn-dark' onClick={companyForm.onSubmit}>Create Company</Button>
                             </Form.Group>
                         </Form>
                     </Col>

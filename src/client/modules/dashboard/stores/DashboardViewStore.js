@@ -1,11 +1,11 @@
 import { observable } from 'mobx'
 
 class DashboardViewStore {
-    @observable user = null;
+    @observable person = null;
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.user = JSON.parse(sessionStorage.getItem('user'));
         debugger
+        this.person = JSON.parse(sessionStorage.getItem('person'));
     }
 
     logOut = () => {

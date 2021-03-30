@@ -1,7 +1,7 @@
 import { RouterState } from 'mobx-state-router';
 
 const checkForUserSession = (fromState, toState, routerStore) => {
-    if (JSON.parse(sessionStorage.getItem('user'))) {
+    if (JSON.parse(sessionStorage.getItem('person'))) {
         return Promise.resolve();
     }
     else {

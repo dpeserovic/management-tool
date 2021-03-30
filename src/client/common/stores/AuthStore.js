@@ -14,19 +14,23 @@ class AuthStore {
     @action.bound
     logIn = async (credentials) => {
         try {
+            const owners = await Axios.get('http://localhost:3001/api/get/companies');
+            const owner = owners.data.filter(o => o.email === credentials.email && o.password === credentials.password);
             const users = await Axios.get('http://localhost:3001/api/get/users');
             const user = users.data.filter(u => u.email === credentials.email && u.password === credentials.password);
-            if (user.length) {
+            const person = owner[0] || user[0];
+            debugger
+            if (owner.length || user.length) {
                 runInAction(() => {
                     this.isLoggedIn = true;
-                    this.loggedInUser = user[0];
+                    this.loggedInUser = person;
                 })
-                sessionStorage.setItem('user', JSON.stringify(this.loggedInUser));
+                debugger
+                sessionStorage.setItem('person', JSON.stringify(this.loggedInUser));
                 this.rootStore.routerStore.goTo('dashboard');
             }
         }
         catch (error) {
-            console.log(error);
             throw error;
         }
     }

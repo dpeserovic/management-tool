@@ -21,9 +21,9 @@ const rules = {
     email: 'required|email',
     password: 'required|string|min:8|max:16',
     confirmPassword: 'required|same:password',
-    companyName: 'required|string|',
-    companyAddress: 'required|string|',
-    companyCity: 'required|string|'
+    companyName: 'required|string',
+    companyAddress: 'required|string',
+    companyCity: 'required|string'
 }
 
 class RegisterCompanyForm extends FormBase {
