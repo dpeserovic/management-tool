@@ -6,7 +6,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function DashboardTemplate(props) {
     const { logOut, person } = props.viewStore;
-    debugger
     return (
         <div>
             <ManagementToolNav />

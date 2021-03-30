@@ -4,7 +4,6 @@ class DashboardViewStore {
     @observable person = null;
     constructor(rootStore) {
         this.rootStore = rootStore;
-        debugger
         this.person = JSON.parse(sessionStorage.getItem('person'));
     }
 

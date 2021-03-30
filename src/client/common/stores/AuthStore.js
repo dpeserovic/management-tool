@@ -19,13 +19,11 @@ class AuthStore {
             const users = await Axios.get('http://localhost:3001/api/get/users');
             const user = users.data.filter(u => u.email === credentials.email && u.password === credentials.password);
             const person = owner[0] || user[0];
-            debugger
             if (owner.length || user.length) {
                 runInAction(() => {
                     this.isLoggedIn = true;
                     this.loggedInUser = person;
                 })
-                debugger
                 sessionStorage.setItem('person', JSON.stringify(this.loggedInUser));
                 this.rootStore.routerStore.goTo('dashboard');
             }
