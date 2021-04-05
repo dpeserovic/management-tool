@@ -24,6 +24,16 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'createCategory',
+        pattern: '/createCategory',
+        beforeEnter: checkForUserSession
+    },
+    {
+        name: 'addItem',
+        pattern: '/addItem',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'notFound',
         pattern: '/notFound'
     }

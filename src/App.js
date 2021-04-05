@@ -4,12 +4,16 @@ import { RouterView } from 'mobx-state-router';
 import { Login } from './client/modules/membership/pages';
 import { Register } from './client/modules/membership/pages';
 import { Dashboard } from './client/modules/dashboard/pages';
+import { CreateCategory } from './client/modules/category/pages';
+import { AddItem } from './client/modules/item/pages';
 import { NotFound } from './NotFound';
 
 const viewMap = {
   login: <Login />,
   register: <Register />,
   dashboard: <Dashboard />,
+  createCategory: <CreateCategory />,
+  addItem: <AddItem />,
   notFound: <NotFound />
 }
 
@@ -18,6 +22,7 @@ const viewMap = {
 class App extends React.Component {
 
   componentDidMount() {
+    this.props.rootStore.init();
   }
 
   render() {

@@ -29,7 +29,7 @@ function RegisterTemplate(props) {
                                 <TextField type={'password'} field={userForm.$('confirmPassword')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={userForm.$('companyKey')} />
+                                <TextField type={'text'} field={userForm.$('companyId')} />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Text>{userForm.error}</Form.Text>
@@ -43,6 +43,9 @@ function RegisterTemplate(props) {
                         <Form>
                             <h2>Company</h2>
                             <Form.Group>
+                                <TextField type={'text'} field={companyForm.$('id')} />
+                            </Form.Group>
+                            <Form.Group>
                                 <TextField type={'text'} field={companyForm.$('email')} />
                             </Form.Group>
                             <Form.Group>
@@ -52,13 +55,13 @@ function RegisterTemplate(props) {
                                 <TextField type={'password'} field={companyForm.$('confirmPassword')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={companyForm.$('companyName')} />
+                                <TextField type={'text'} field={companyForm.$('name')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={companyForm.$('companyAddress')} />
+                                <TextField type={'text'} field={companyForm.$('address')} />
                             </Form.Group>
                             <Form.Group>
-                                <TextField type={'text'} field={companyForm.$('companyCity')} />
+                                <TextField type={'text'} field={companyForm.$('city')} />
                             </Form.Group>
                             <Form.Group>
                                 <Form.Text>{companyForm.error}</Form.Text>
