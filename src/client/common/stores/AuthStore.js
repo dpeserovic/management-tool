@@ -14,12 +14,12 @@ class AuthStore {
     @action.bound
     logIn = async (credentials) => {
         try {
-            const owners = await Axios.get('http://localhost:3001/api/get/companies');
-            const owner = owners.data.filter(o => o.email === credentials.email && o.password === credentials.password);
+            const companies = await Axios.get('http://localhost:3001/api/get/companies');
+            const company = companies.data.find(c => c.email === credentials.email && c.password === credentials.password);
             const users = await Axios.get('http://localhost:3001/api/get/users');
-            const user = users.data.filter(u => u.email === credentials.email && u.password === credentials.password);
-            const person = owner[0] || user[0];
-            if (owner.length || user.length) {
+            const user = users.data.find(u => u.email === credentials.email && u.password === credentials.password);
+            const person = company || user;
+            if (company || user) {
                 runInAction(() => {
                     this.isLoggedIn = true;
                     this.loggedInUser = person;
@@ -29,7 +29,6 @@ class AuthStore {
             }
         }
         catch (error) {
-            throw error;
         }
     }
 
@@ -37,8 +36,22 @@ class AuthStore {
     logOut = async () => {
         this.isLoggedIn = false;
         this.loggedInUser = null;
-        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('person');
         this.rootStore.routerStore.goTo('login');
+    }
+
+    @action.bound
+    checkUser = () => {
+        const person = JSON.parse(sessionStorage.getItem('person'));
+        if (person) {
+            this.isLoggedIn = true;
+            this.loggedInUser = person;
+            this.rootStore.routerStore.goTo('dashboard');
+        } else {
+            this.isLoggedIn = false;
+            this.loggedInUser = null;
+            this.rootStore.routerStore.goTo('login');
+        }
     }
 }
 

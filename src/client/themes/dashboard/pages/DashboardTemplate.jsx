@@ -5,28 +5,40 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function DashboardTemplate(props) {
-    const { logOut, person } = props.viewStore;
+    const { isOwner, navigateCreateCategory, navigateAddItem, logOut } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
-            <h1>Dashboard</h1>
-            {person.hasOwnProperty('name')
-            ? 
-            <ListGroup>
-                <ListGroup.Item>ID: {person.id}</ListGroup.Item>
-                <ListGroup.Item>Email: {person.email}</ListGroup.Item>
-                <ListGroup.Item>Name: {person.name}</ListGroup.Item>
-                <ListGroup.Item>Address: {person.address}</ListGroup.Item>
-                <ListGroup.Item>City: {person.city}</ListGroup.Item>
-            </ListGroup>
-            :
-            <ListGroup>
-            <ListGroup.Item>ID: {person.id}</ListGroup.Item>
-            <ListGroup.Item>Email: {person.email}</ListGroup.Item>
-            <ListGroup.Item>Company key: {person.companyKey}</ListGroup.Item>
-            </ListGroup>
+            {isOwner ?
+                <ListGroup className="list" as="ul">
+                    <ListGroup.Item as='li'>
+                        <h1>Create category</h1>
+                        <Button variant='btn btn-dark' onClick={navigateCreateCategory}>Create User</Button>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                        <h1>Add item</h1>
+                        <Button variant='btn btn-dark' onClick={navigateAddItem}>Create User</Button>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                        <h1>Virtual warehouse</h1>
+                        <Button variant='btn btn-dark'>Create User</Button>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                        <h1>My profile</h1>
+                        <Button variant='btn btn-dark'>Create User</Button>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                        <h1>Log out</h1>
+                        <Button variant="btn btn-dark" onClick={logOut}>Log out</Button>
+                    </ListGroup.Item>
+                </ListGroup>
+                :
+                <ListGroup className="list" as="ul">
+                    <ListGroup.Item as='li'>NOT OWNER</ListGroup.Item>
+                </ListGroup>
             }
-            <Button variant="btn btn-dark" onClick={logOut}>Log out</Button>
+
+
         </div>
     )
 }

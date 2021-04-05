@@ -1,29 +1,31 @@
 import FormBase from '../../../common/forms/FormBase';
 
-const fields = ['email', 'password', 'confirmPassword', 'companyName', 'companyAddress', 'companyCity']
+const fields = ['id', 'email', 'password', 'confirmPassword', 'name', 'address', 'city']
 
 const values = {
 }
 
 const labels = {
+    id: 'Key',
     email: 'E-mail',
     password: 'Password',
     confirmPassword: 'Confirm password',
-    companyName: 'Company name',
-    companyAddress: 'Company address',
-    companyCity: 'Company city'
+    name: 'Name',
+    address: 'Address',
+    city: 'City'
 }
 
 const placeholders = {
 }
 
 const rules = {
+    id: 'required|string|min:5|max:5',
     email: 'required|email',
     password: 'required|string|min:8|max:16',
     confirmPassword: 'required|same:password',
-    companyName: 'required|string',
-    companyAddress: 'required|string',
-    companyCity: 'required|string'
+    name: 'required|string',
+    address: 'required|string',
+    city: 'required|string'
 }
 
 class RegisterCompanyForm extends FormBase {
