@@ -8,3 +8,6 @@
 .link-1 {
     color: #fff;
 }
+.list li {
+    border: none;
+}

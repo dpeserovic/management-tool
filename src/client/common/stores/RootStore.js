@@ -6,6 +6,10 @@ class RootStore {
         this.routerStore = new RouterStore(this);
         this.authStore = new AuthStore(this);
     }
+
+    init = () => {
+        this.authStore.checkUser();
+    }
 }
 
 export default RootStore;

@@ -6,16 +6,12 @@ class LoginViewStore {
         this.form = new LoginForm({
             onSuccess: async (form) => {
                 const values = form.values();
-                console.log('Success', values);
                 try {
                     this.rootStore.authStore.logIn(values);
-                } catch (e) {
-                    this.form.invalidate(e.message);
+                } catch (error) {
                 }
             },
             onError: (form) => {
-                const values = form.values();
-                console.log('Error', values);
             }
         })
     }
