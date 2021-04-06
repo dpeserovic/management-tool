@@ -5,7 +5,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function MyProfileTemplate(props) {
     const { person } = props.viewStore;
-    debugger
     return (
         <div>
             <ManagementToolNav />
