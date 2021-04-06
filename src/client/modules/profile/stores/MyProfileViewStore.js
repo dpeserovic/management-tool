@@ -6,7 +6,6 @@ class MyProfileViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.person = JSON.parse(sessionStorage.getItem('person'));
-
     }
 }
 
