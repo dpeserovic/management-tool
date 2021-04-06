@@ -34,6 +34,16 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'virtualWarehouse',
+        pattern: '/virtualWarehouse',
+        beforeEnter: checkForUserSession
+    },
+    {
+        name: 'myProfile',
+        pattern: '/myProfile',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'notFound',
         pattern: '/notFound'
     }
