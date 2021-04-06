@@ -24,6 +24,14 @@ class DashboardViewStore {
         this.rootStore.routerStore.goTo('addItem');
     }
 
+    navigateVirtualWarehouse = () => {
+        this.rootStore.routerStore.goTo('virtualWarehouse');
+    }
+
+    navigateMyProfile = () => {
+        this.rootStore.routerStore.goTo('myProfile');
+    }
+
     logOut = () => {
         this.rootStore.authStore.logOut();
     }
