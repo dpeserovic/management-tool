@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function RegisterTemplate(props) {
-    const { navigateLogin, userForm, companyForm } = props.viewStore;
+    const { userForm, companyForm, navigateLogin } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -73,7 +73,7 @@ function RegisterTemplate(props) {
                     </Col>
                 </Row>
             </Container>
-            <Button variant="btn btn-light" onClick={navigateLogin}>Go to Login</Button>
+            <Button variant="btn btn-secondary" onClick={navigateLogin}>Go to Login</Button>
         </div>
     )
 }
