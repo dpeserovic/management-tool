@@ -45,7 +45,7 @@ app.post('/api/create/company', (req, res) => {
 
 app.get('/api/get/categories', (req, res) => {
     connection.query('SELECT * FROM categories', (error, result) => {
-        error ? console.log(error) : res.send(result);
+        error ? res.send(error) : res.send(result);
     })
 })
 
@@ -53,6 +53,14 @@ app.post('/api/create/category', (req, res) => {
     const type = req.body.type;
     const companyId = req.body.companyId;
     connection.query('INSERT INTO categories (type, companyId) VALUES (?,?)', [type, companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.post('/api/create/item', (req, res) => {
+    const name = req.body.name;
+    const categoryId = req.body.categoryId;
+    connection.query('INSERT INTO items (name, categoryId) VALUES (?,?)', [name, categoryId], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })

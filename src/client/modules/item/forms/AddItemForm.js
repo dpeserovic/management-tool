@@ -1,12 +1,12 @@
 import FormBase from '../../../common/forms/FormBase';
 
-const fields = ['type', 'categoryId']
+const fields = ['name', 'categoryId']
 
 const values = {
 }
 
 const labels = {
-    type: 'Name',
+    name: 'Name',
     categoryId: 'Category'
 }
 
@@ -14,8 +14,8 @@ const placeholders = {
 }
 
 const rules = {
-    type: 'required|string',
-    categoryId: 'required'
+    name: 'required|string',
+    categoryId: 'required|numeric'
 }
 
 class RegisterCompanyForm extends FormBase {

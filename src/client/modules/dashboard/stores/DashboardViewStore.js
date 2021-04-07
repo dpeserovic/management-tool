@@ -1,7 +1,8 @@
-import { computed, observable } from 'mobx';
+import { observable, computed } from 'mobx';
 
 class DashboardViewStore {
-    @observable person = null;
+    @observable
+    person = null;
 
     @computed
     get isOwner() {
