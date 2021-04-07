@@ -16,10 +16,13 @@ function CreateCategoryTemplate(props) {
                     <TextField type={'text'} field={form.$('type')} />
                 </Form.Group>
                 <Form.Group>
+                    <Form.Text>{form.error}</Form.Text>
+                </Form.Group>
+                <Form.Group>
                     <Button variant="btn btn-dark" onClick={form.onSubmit}>Create</Button>
                 </Form.Group>
             </Form>
-            <Button variant="btn btn-light" onClick={navigateDashboard}>Back</Button>
+            <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
         </div>
     )
 }
