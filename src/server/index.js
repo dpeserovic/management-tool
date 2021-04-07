@@ -49,6 +49,13 @@ app.get('/api/get/categories', (req, res) => {
     })
 })
 
+app.get('/api/get/categories/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM categories WHERE companyId = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.post('/api/create/category', (req, res) => {
     const type = req.body.type;
     const companyId = req.body.companyId;
@@ -57,10 +64,24 @@ app.post('/api/create/category', (req, res) => {
     })
 })
 
+app.get('/api/get/items', (req, res) => {
+    connection.query('SELECT * FROM items', (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.get('/api/get/items/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM items WHERE userId IS NULL AND companyId = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.post('/api/create/item', (req, res) => {
     const name = req.body.name;
+    const companyId = req.body.companyId;
     const categoryId = req.body.categoryId;
-    connection.query('INSERT INTO items (name, categoryId) VALUES (?,?)', [name, categoryId], (error, result) => {
+    connection.query('INSERT INTO items (name, companyId, categoryId) VALUES (?,?,?)', [name, companyId, categoryId], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })

@@ -30,18 +30,8 @@ CREATE TABLE `categories` (
   KEY `fk_company_id_idx` (`companyId`),
   KEY `fk_category_company_id_idx` (`companyId`),
   CONSTRAINT `fk_category_company_id` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categories`
---
-
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'type category','cokey');
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `companies`
@@ -66,16 +56,6 @@ CREATE TABLE `companies` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `companies`
---
-
-LOCK TABLES `companies` WRITE;
-/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-INSERT INTO `companies` VALUES ('cokey','cokey@cokey.com','12345678','cokey name','cokey address','cokey city');
-/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `items`
 --
 
@@ -85,21 +65,18 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
+  `userId` int DEFAULT NULL,
+  `companyId` varchar(45) NOT NULL,
   `categoryId` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_category_id_idx` (`categoryId`),
-  CONSTRAINT `fk_category_id` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_item_company_id_idx` (`companyId`),
+  KEY `fk_user_id_idx` (`userId`),
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`),
+  CONSTRAINT `fk_item_company_id` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `items`
---
-
-LOCK TABLES `items` WRITE;
-/*!40000 ALTER TABLE `items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `items` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -118,18 +95,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_company_id_idx` (`companyId`),
   CONSTRAINT `fk_company_id` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'cokeyuser@cokeyuser.com','12345678','cokey');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -140,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-05 19:35:54
+-- Dump completed on 2021-04-08  0:05:09

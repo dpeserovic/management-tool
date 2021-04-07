@@ -1,20 +1,27 @@
-import { action, observable, runInAction } from "mobx";
+import { observable, action, runInAction } from 'mobx';
 import { AddItemForm } from '../forms'
-import Axios from "axios";
+import Axios from 'axios';
 
 class AddItemViewStore {
+    @observable
+    person;
+    @observable
+    companyId;
     @observable
     categories;
 
     constructor(rootStore) {
         this.rootStore = rootStore;
+        this.person = JSON.parse(sessionStorage.getItem('person'));
+        this.companyId = this.person.id;
 
         this.form = new AddItemForm({
             onSuccess: async (form) => {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-                    const user = await Axios.post('http://localhost:3001/api/create/item', { name: values.name, categoryId: values.categoryId });
+                    const user = await Axios.post('http://localhost:3001/api/create/item', { name: values.name, companyId: this.companyId, categoryId: values.categoryId });
+                    this.form.clear();
                     console.log('Success', user);
                 } catch (error) {
                     this.form.invalidate(error.message);
@@ -29,10 +36,10 @@ class AddItemViewStore {
 
     @action.bound
     getCategories = async () => {
-        const categories = await Axios.get('http://localhost:3001/api/get/categories');
-        console.log('Success', categories);
+        const companyCategories = await Axios.get('http://localhost:3001/api/get/categories/' + this.companyId);
+        console.log('Success', companyCategories);
         runInAction(() => {
-            this.categories = categories;
+            this.categories = companyCategories;
         })
     }
 

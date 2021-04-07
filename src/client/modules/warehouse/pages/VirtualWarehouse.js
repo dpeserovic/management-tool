@@ -6,7 +6,14 @@ import { VirtualWarehouseTemplate } from '../../../themes/warehouse/pages';
 @inject(stores => ({ viewStore: new VirtualWarehouseViewStore(stores.rootStore) }))
 @observer
 class VirtualWarehouse extends React.Component {
+    componentDidMount() {
+        this.props.viewStore.getCategories();
+        this.props.viewStore.getItems();
+    }
     render() {
+        if (!this.props.viewStore.categories || !this.props.viewStore.items) {
+            return <div />
+        }
         return (
             <VirtualWarehouseTemplate viewStore={this.props.viewStore} />
         )
