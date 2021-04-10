@@ -25,6 +25,10 @@ class DashboardViewStore {
         this.rootStore.routerStore.goTo('addItem');
     }
 
+    navigateMyBackpack = () => {
+        this.rootStore.routerStore.goTo('myBackpack');
+    }
+
     navigateVirtualWarehouse = () => {
         this.rootStore.routerStore.goTo('virtualWarehouse');
     }

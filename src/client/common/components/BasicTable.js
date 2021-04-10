@@ -11,30 +11,46 @@ import Icon from '@material-ui/core/Icon';
 
 import Button from 'react-bootstrap/Button';
 
-export default observer(({ store }) => {
+export default observer(({ store, permission, actions }) => {
     return (
         <div>
             <TableContainer>
                 <Table>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Item name</TableCell>
-                            <TableCell>Item category</TableCell>
-                            <TableCell>Borrow</TableCell>
-                            <TableCell>Edit</TableCell>
-                            <TableCell>Delete</TableCell>
-                        </TableRow>
+                        {permission ?
+                            <TableRow>
+                                <TableCell>Item name</TableCell>
+                                <TableCell>Item category</TableCell>
+                                <TableCell>Edit</TableCell>
+                                <TableCell>Delete</TableCell>
+                            </TableRow>
+                            :
+                            <TableRow>
+                                <TableCell>Item name</TableCell>
+                                <TableCell>Item category</TableCell>
+                                <TableCell>Borrow</TableCell>
+                            </TableRow>
+                        }
                     </TableHead>
                     <TableBody>
-                        {store.data.map(i => (
-                            <TableRow key={i.id}>
-                                <TableCell>{i.name}</TableCell>
-                                <TableCell>{i.type}</TableCell>
-                                <TableCell><Button variant="btn btn-primary"><Icon fontSize='small'>add</Icon></Button></TableCell>
-                                <TableCell><Button variant="btn btn-info"><Icon fontSize='small'>edit</Icon></Button></TableCell>
-                                <TableCell><Button variant="btn btn-danger"><Icon fontSize='small'>delete</Icon></Button></TableCell>
-                            </TableRow>
-                        ))}
+                        {permission ?
+                            store.data.map(i => (
+                                <TableRow key={i.id}>
+                                    <TableCell>{i.name}</TableCell>
+                                    <TableCell>{i.type}</TableCell>
+                                    <TableCell><Button variant="btn btn-info" onClick={e => actions.navigateEditItem(i.id)}><Icon fontSize='small'>edit</Icon></Button></TableCell>
+                                    <TableCell><Button variant="btn btn-danger" onClick={e => actions.deleteItem(i.id)}><Icon fontSize='small'>delete</Icon></Button></TableCell>
+                                </TableRow>
+                            ))
+                            :
+                            store.data.map(i => (
+                                <TableRow key={i.id}>
+                                    <TableCell>{i.name}</TableCell>
+                                    <TableCell>{i.type}</TableCell>
+                                    <TableCell><Button variant="btn btn-primary" onClick={e => actions.borrowItem(i.id)}><Icon fontSize='small'>add</Icon></Button></TableCell>
+                                </TableRow>
+                            ))
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
