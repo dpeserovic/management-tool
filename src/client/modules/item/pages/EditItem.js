@@ -6,13 +6,10 @@ import { EditItemTemplate } from '../../../themes/item/pages';
 @inject(stores => ({ viewStore: new EditItemViewStore(stores.rootStore) }))
 @observer
 class EditItem extends React.Component {
-    // async componentDidMount() {
-    //     await this.props.viewStore.getCategories();
-    // }
     render() {
-        // if (!this.props.viewStore.categories) {
-        //     return <div />
-        // }
+        if (!this.props.viewStore.categories || !this.props.viewStore.item) {
+            return <div />
+        }
         return (
             <EditItemTemplate viewStore={this.props.viewStore} />
         )
