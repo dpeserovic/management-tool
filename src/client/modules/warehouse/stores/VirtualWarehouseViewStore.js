@@ -23,6 +23,22 @@ class VirtualWarehouseViewStore {
         this.rootStore = rootStore;
         this.person = JSON.parse(sessionStorage.getItem('person'));
         this.companyId = this.person.hasOwnProperty('name') ? this.person.id : this.person.companyId;
+        this.userId = !this.person.hasOwnProperty('name') ? this.person.id : null;
+        this.actions = {
+            navigateEditItem: (id) => {
+                this.rootStore.routerStore.goTo('editItem', { id: id });
+            },
+            deleteItem: async (id) => {
+                const deleteItem = await Axios.get('http://localhost:3001/api/delete/item/' + id);
+                console.log('Success', deleteItem);
+                await this.getItems();
+            },
+            borrowItem: async (id) => {
+                const borrow = await Axios.post('http://localhost:3001/api/update/item/' + id + '/' + this.userId);
+                console.log('Success', borrow);
+                await this.getItems();
+            }
+        }
     }
 
     @action.bound

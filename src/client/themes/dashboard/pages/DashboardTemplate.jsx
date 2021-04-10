@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function DashboardTemplate(props) {
-    const { isOwner, navigateCreateCategory, navigateAddItem, navigateVirtualWarehouse, navigateMyProfile, logOut } = props.viewStore;
+    const { isOwner, navigateCreateCategory, navigateAddItem, navigateMyBackpack, navigateVirtualWarehouse, navigateMyProfile, logOut } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -36,7 +36,7 @@ function DashboardTemplate(props) {
                 <ListGroup className="list" as="ul">
                     <ListGroup.Item as='li'>
                         <h1>My backpack</h1>
-                        <Button variant='btn btn-secondary'>My backpack</Button>
+                        <Button variant='btn btn-secondary' onClick={navigateMyBackpack}>My backpack</Button>
                     </ListGroup.Item>
                     <ListGroup.Item as='li'>
                         <h1>Virtual warehouse</h1>
