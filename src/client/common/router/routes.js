@@ -34,8 +34,18 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'myBackpack',
+        pattern: '/myBackpack',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'virtualWarehouse',
         pattern: '/virtualWarehouse',
+        beforeEnter: checkForUserSession
+    },
+    {
+        name: 'editItem',
+        pattern: '/editItem/:id',
         beforeEnter: checkForUserSession
     },
     {
