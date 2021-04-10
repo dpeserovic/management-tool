@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function EditItemTemplate(props) {
-    const { form, navigateDashboard } = props.viewStore;
+    const { form, categories, item, navigateVirtualWarehouse } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -16,9 +16,9 @@ function EditItemTemplate(props) {
                 <Form.Group>
                     <TextField type={'text'} field={form.$('name')} />
                 </Form.Group>
-                {/* <Form.Group>
+                <Form.Group>
                     <Dropdown store={categories} type={'text'} field={form.$('categoryId')} />
-                </Form.Group> */}
+                </Form.Group>
                 <Form.Group>
                     <Form.Text>{form.error}</Form.Text>
                 </Form.Group>
@@ -26,7 +26,7 @@ function EditItemTemplate(props) {
                     <Button variant="btn btn-dark" onClick={form.onSubmit}>Edit</Button>
                 </Form.Group>
             </Form>
-            <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
+            <Button variant="btn btn-secondary" onClick={navigateVirtualWarehouse}>Back</Button>
         </div>
     )
 }

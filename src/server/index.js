@@ -100,6 +100,15 @@ app.post('/api/create/item', (req, res) => {
     })
 })
 
+app.post('/api/edit/item/:id', (req, res) => {
+    const id = req.params.id;
+    const name = req.body.name;
+    const categoryId = req.body.categoryId;
+    connection.query('UPDATE items SET name = (?), categoryId = (?) WHERE id = (?)', [name, categoryId, id], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.get('/api/delete/item/:id', (req, res) => {
     const id = req.params.id;
     connection.query('DELETE FROM items WHERE id = (?)', [id], (error, result) => {
