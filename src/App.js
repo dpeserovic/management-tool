@@ -11,6 +11,7 @@ import { VirtualWarehouse } from './client/modules/warehouse/pages';
 import { EditItem } from './client/modules/item/pages';
 import { MyProfile } from './client/modules/profile/pages';
 import { NotFound } from './NotFound';
+import { ToastContainer } from 'react-toastify';
 
 const viewMap = {
   login: <Login />,
@@ -35,7 +36,21 @@ class App extends React.Component {
 
   render() {
     const { routerStore } = this.props;
-    return <RouterView routerStore={routerStore.router} viewMap={viewMap} />
+    return (
+      <React.Fragment>
+        <RouterView routerStore={routerStore.router} viewMap={viewMap} />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
+      </React.Fragment>
+    )
   }
 }
 

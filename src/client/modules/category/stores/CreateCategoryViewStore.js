@@ -13,13 +13,16 @@ class CreateCategoryViewStore {
                     const category = await Axios.post('http://localhost:3001/api/create/category', { type: values.type, companyId: this.rootStore.authStore.loggedInUser.id });
                     this.form.clear();
                     console.log('Success', category);
+                    !category.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 } catch (error) {
                     this.form.invalidate(error.message);
+                    this.rootStore.notificationStore.error(error.message);
                 }
             },
             onError: (form) => {
                 const values = form.values();
                 console.log('Error', values);
+                this.rootStore.notificationStore.error('Error');
             }
         })
     }

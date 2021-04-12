@@ -31,11 +31,13 @@ class VirtualWarehouseViewStore {
             deleteItem: async (id) => {
                 const deleteItem = await Axios.get('http://localhost:3001/api/delete/item/' + id);
                 console.log('Success', deleteItem);
+                !deleteItem.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 await this.getItems();
             },
             borrowItem: async (id) => {
                 const borrow = await Axios.post('http://localhost:3001/api/update/item/' + id + '/' + this.userId);
                 console.log('Success', borrow);
+                !borrow.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 await this.getItems();
             }
         }

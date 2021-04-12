@@ -13,6 +13,7 @@ class MyBackpackViewStore {
             returnItem: async (id) => {
                 const returnItem = await Axios.post('http://localhost:3001/api/update/return-item/' + id);
                 console.log('Success', returnItem);
+                !returnItem.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 await this.getItems();
             }
         }
