@@ -9,8 +9,8 @@ function MyBackpackTemplate(props) {
         <div>
             <ManagementToolNav />
             <h1>My backpack</h1>
-            <BackpackTable store={items} actions={actions} />
             <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
+            <BackpackTable store={items} actions={actions} />
         </div>
     )
 }

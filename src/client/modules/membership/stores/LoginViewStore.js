@@ -13,11 +13,13 @@ class LoginViewStore {
                     console.log('Success');
                 } catch (error) {
                     this.form.invalidate(error.message);
+                    this.rootStore.notificationStore.error('Error');
                 }
             },
             onError: (form) => {
                 const values = form.values();
                 console.log('Error', values);
+                this.rootStore.notificationStore.error('Error');
             }
         });
     }

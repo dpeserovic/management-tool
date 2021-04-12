@@ -20,16 +20,19 @@ class AddItemViewStore {
                 const values = form.values();
                 console.log('Success', values);
                 try {
-                    const user = await Axios.post('http://localhost:3001/api/create/item', { name: values.name, companyId: this.companyId, categoryId: values.categoryId });
+                    const createItem = await Axios.post('http://localhost:3001/api/create/item', { name: values.name, companyId: this.companyId, categoryId: values.categoryId });
                     this.form.clear();
-                    console.log('Success', user);
+                    console.log('Success', createItem);
+                    !createItem.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 } catch (error) {
                     this.form.invalidate(error.message);
+                    this.rootStore.notificationStore.error(error.message);
                 }
             },
             onError: (form) => {
                 const values = form.values();
                 console.log('Error', values);
+                this.rootStore.notificationStore.error('Error');
             }
         })
     }
