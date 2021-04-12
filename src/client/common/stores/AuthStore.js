@@ -27,8 +27,12 @@ class AuthStore {
                 sessionStorage.setItem('person', JSON.stringify(this.loggedInUser));
                 this.rootStore.routerStore.goTo('dashboard');
             }
+            else {
+                this.rootStore.notificationStore.error('Error');
+            }
         }
         catch (error) {
+            this.rootStore.notificationStore.error('Error');
         }
     }
 

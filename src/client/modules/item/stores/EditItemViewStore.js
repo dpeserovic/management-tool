@@ -24,13 +24,16 @@ class EditItemViewStore {
                 try {
                     const editItem = await Axios.post('http://localhost:3001/api/edit/item/' + this.id, { name: values.name, categoryId: values.categoryId });
                     console.log('Success', editItem);
+                    !editItem.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
                 } catch (error) {
                     this.form.invalidate(error.message);
+                    this.rootStore.notificationStore.error(error.message);
                 }
             },
             onError: (form) => {
                 const values = form.values();
                 console.log('Error', values);
+                this.rootStore.notificationStore.error('Error');
             }
         })
     }
