@@ -27,7 +27,30 @@ describe(
 
     });
 
+    test ("Login error", async () =>{
+
+      await page.click('input#email--1');
+      await page.type('input#email--1', 'kompanija@test.com');
+      await page.click('input#password--2');
+      await page.type('input#password--2', 'passw211');
+
+      const [button] = await page.$x("//button[contains(., 'Log in')]");
+      if (button) {
+      await button.click();
+      }
+
+      let invalidLogin = await page.$eval('div.Toastify__toast-body', (div) => div.textContent);
+      expect(invalidLogin).toBe('Error');
+
+  }, 10500);
+
     test ("Login successful", async () =>{
+
+        await page.click('input#email--1');
+        await page.keyboard.down('Control');
+        await page.keyboard.press('KeyA');
+        await page.keyboard.up('Control');
+        await page.keyboard.press('Backspace');
 
         await page.click('input#email--1');
         await page.type('input#email--1', 'kompanija@test.com');
@@ -45,3 +68,4 @@ describe(
     }, 10500)
 
 });
+

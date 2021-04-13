@@ -1,20 +1,36 @@
-import { render } from '@testing-library/react';
+import React from 'react';
+import { render,cleanup,fireEvent,waitForElement } from '@testing-library/react';
+import { createStore } from "redux";
+import { observable, action, decorate } from "mobx";
+import LoginTemplate from '../client/themes/membership/pages/LoginTemplate';
 
+afterEach(cleanup);
 
-describe("Login render Page", () => {
-    it('renders the Login page', () => {
-      const {getByText} = render(<Login/>);
-      expect(getByText(/Login/i)).toBeInTheDocument();
-    });
-  
-    it('render 2 input components', () => {
-      const {getByLabelText} = render(<Login/>);
-      expect(getByLabelText(/Username/i)).toBeInTheDocument();
-      expect(getByLabelText(/Password/i)).toBeInTheDocument();
-    });
-  
-    it('renders a submit button', () => {
-      const {getByText} = render(<Login/>);
-      expect(getByText("Submit")).toBeInTheDocument();
-    });
-  });
+const DecoratedCounterStore = decorate(form, {
+  email: observable,
+  password: observable,
+  onSubmit: action,
+
+});
+
+const renderWithStore = counterStore =>
+  render(
+    <Provider CounterStore={form}>
+      <LoginTemplate />
+    </Provider>
+  );
+
+it("renders initial count", () => {
+  const counterStore = new DecoratedCounterStore();
+
+  const { getByTestId } = renderWithStore(counterStore);
+
+  expect(getByTestId("text-field")).toHaveTextContent("0");
+});
+
+it("renders after increment", () => {
+  const counterStore = new DecoratedCounterStore();
+  const { getByTestId } = renderWithStore(counterStore);
+
+  expect(getByTestId("button")).toHaveTextContent("0");
+});
