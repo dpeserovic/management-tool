@@ -11,33 +11,43 @@ class MyBackpackViewStore {
         this.rootStore = rootStore;
         this.actions = {
             returnItem: async (id) => {
-                const returnItem = await Axios.post('http://localhost:3001/api/update/return-item/' + id);
-                console.log('Success', returnItem);
-                !returnItem.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
-                await this.getItems();
+                try {
+                    const returnItem = await Axios.post('http://localhost:3001/api/return/item/' + id);
+                    console.log('Success', returnItem);
+                    if (!returnItem.data.errno) {
+                        await this.getItems();
+                        this.rootStore.notificationStore.success('Success');
+                    }
+                    else {
+                        this.rootStore.notificationStore.error('Error');
+                    }
+                }
+                catch (error) {
+                    this.rootStore.notificationStore.error(error.message);
+                }
             }
         }
     }
 
     @action.bound
     getCategories = async () => {
-        const companyCategories = await Axios.get('http://localhost:3001/api/get/categories/' + this.rootStore.authStore.loggedInUser.companyId);
-        console.log('Success', companyCategories);
+        const getCategories = await Axios.get('http://localhost:3001/api/get/categories/' + this.rootStore.authStore.loggedInUser.companyId);
+        console.log('Success', getCategories);
         runInAction(() => {
-            this.categories = companyCategories;
+            this.categories = getCategories;
         })
     }
 
     @action.bound
     getItems = async () => {
-        const companyItems = await Axios.get('http://localhost:3001/api/get/user-items/' + this.rootStore.authStore.loggedInUser.id);
-        console.log('Success', companyItems);
-        companyItems.data = companyItems.data.map(i => {
+        const getItems = await Axios.get('http://localhost:3001/api/get/my-items/' + this.rootStore.authStore.loggedInUser.id);
+        console.log('Success', getItems);
+        getItems.data = getItems.data.map(i => {
             this.categories.data.filter(c => c.id === i.categoryId ? i.type = c.type : null);
             return i;
         })
         runInAction(() => {
-            this.items = companyItems;
+            this.items = getItems;
         })
     }
 

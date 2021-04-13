@@ -18,10 +18,10 @@ const rules = {
     password: 'required|string|min:8|max:16'
 }
 
-class RegisterForm extends FormBase {
+class LoginForm extends FormBase {
     constructor(hooks) {
         super({ fields, values, labels, placeholders, rules }, { hooks });
     }
 }
 
-export default RegisterForm;
+export default LoginForm;

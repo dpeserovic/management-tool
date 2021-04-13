@@ -1,12 +1,10 @@
-import { computed, observable } from "mobx";
+import { computed } from 'mobx';
+import { MyProfileForm } from '../forms';
 
 class MyProfileViewStore {
-    @observable
-    person;
-
     @computed
     get isOwner() {
-        if (this.person.hasOwnProperty('name')) {
+        if (this.rootStore.authStore.loggedInUser.hasOwnProperty('name')) {
             return true;
         }
         return false;
@@ -14,7 +12,14 @@ class MyProfileViewStore {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.person = JSON.parse(sessionStorage.getItem('person'));
+        const { loggedInUser } = this.rootStore.authStore;
+        this.form = new MyProfileForm();
+        if (this.rootStore.authStore.loggedInUser.hasOwnProperty('name')) {
+            this.form.set('value', { id: loggedInUser.id, email: loggedInUser.email, password: loggedInUser.password, name: loggedInUser.name, address: loggedInUser.address, city: loggedInUser.city });
+        }
+        else {
+            this.form.set('value', { id: loggedInUser.id, email: loggedInUser.email, password: loggedInUser.password, companyId: loggedInUser.companyId });
+        }
     }
 
     navigateDashboard = () => {

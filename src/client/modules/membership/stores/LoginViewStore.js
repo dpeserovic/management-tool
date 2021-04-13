@@ -2,7 +2,6 @@ import { LoginForm } from '../forms';
 class LoginViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
-
         this.form = new LoginForm({
             onSuccess: async (form) => {
                 const values = form.values();
@@ -10,10 +9,9 @@ class LoginViewStore {
                 try {
                     this.rootStore.authStore.logIn(values);
                     this.form.clear();
-                    console.log('Success');
                 } catch (error) {
                     this.form.invalidate(error.message);
-                    this.rootStore.notificationStore.error('Error');
+                    this.rootStore.notificationStore.error(error.message);
                 }
             },
             onError: (form) => {
