@@ -4,17 +4,22 @@ import Axios from 'axios';
 class RegisterViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
-
         this.userForm = new RegisterUserForm({
             onSuccess: async (userForm) => {
                 const values = userForm.values();
                 console.log('Success', values);
                 try {
-                    const user = await Axios.post('http://localhost:3001/api/create/user', { email: values.email, password: values.password, companyId: values.companyId });
-                    this.userForm.clear();
-                    console.log('Success', user);
-                    !user.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
-                } catch (error) {
+                    const createUser = await Axios.post('http://localhost:3001/api/create/user', { email: values.email, password: values.password, companyId: values.companyId });
+                    console.log('Success', createUser);
+                    if (!createUser.data.errno) {
+                        this.rootStore.notificationStore.success('Success');
+                        this.userForm.clear();
+                    }
+                    else {
+                        this.rootStore.notificationStore.error('Error');
+                    }
+                }
+                catch (error) {
                     this.userForm.invalidate(error.message);
                     this.rootStore.notificationStore.error(error.message);
                 }
@@ -22,18 +27,23 @@ class RegisterViewStore {
             onError: (userForm) => {
                 const values = userForm.values();
                 console.log('Error', values);
+                this.rootStore.notificationStore.error('Error');
             }
         });
-
         this.companyForm = new RegisterCompanyForm({
             onSuccess: async (companyForm) => {
                 const values = companyForm.values();
                 console.log('Success', values);
                 try {
-                    const company = await Axios.post('http://localhost:3001/api/create/company', { id: values.id, email: values.email, password: values.password, name: values.name, address: values.address, city: values.city });
-                    this.companyForm.clear();
-                    console.log('Success', company);
-                    !company.data.errno ? this.rootStore.notificationStore.success('Success') : this.rootStore.notificationStore.error('Error');
+                    const createCompany = await Axios.post('http://localhost:3001/api/create/company', { id: values.id, email: values.email, password: values.password, name: values.name, address: values.address, city: values.city });
+                    console.log('Success', createCompany);
+                    if (!createCompany.data.errno) {
+                        this.rootStore.notificationStore.success('Success');
+                        this.companyForm.clear();
+                    }
+                    else {
+                        this.rootStore.notificationStore.error('Error');
+                    }
                 } catch (error) {
                     this.companyForm.invalidate(error.message);
                     this.rootStore.notificationStore.error(error.message);

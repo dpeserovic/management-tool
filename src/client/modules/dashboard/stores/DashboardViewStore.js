@@ -1,12 +1,9 @@
 import { observable, computed } from 'mobx';
 
 class DashboardViewStore {
-    @observable
-    person = null;
-
     @computed
     get isOwner() {
-        if (this.person.hasOwnProperty('name')) {
+        if (this.rootStore.authStore.loggedInUser.hasOwnProperty('name')) {
             return true;
         }
         return false;
@@ -14,7 +11,6 @@ class DashboardViewStore {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.person = JSON.parse(sessionStorage.getItem('person'));
     }
 
     navigateCreateCategory = () => {

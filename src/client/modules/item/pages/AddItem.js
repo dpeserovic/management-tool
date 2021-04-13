@@ -6,8 +6,8 @@ import { AddItemTemplate } from '../../../themes/item/pages';
 @inject(stores => ({ viewStore: new AddItemViewStore(stores.rootStore) }))
 @observer
 class AddItem extends React.Component {
-    componentDidMount() {
-        this.props.viewStore.getCategories();
+    async componentDidMount() {
+        await this.props.viewStore.getCategories();
     }
     render() {
         if (!this.props.viewStore.categories) {

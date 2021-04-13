@@ -1,1 +1,1 @@
-export {default as MyBackpackTemplate } from './MyBackpackTemplate';
+export { default as MyBackpackTemplate } from './MyBackpackTemplate';

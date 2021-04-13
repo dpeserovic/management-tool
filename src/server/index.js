@@ -43,12 +43,6 @@ app.post('/api/create/company', (req, res) => {
     })
 })
 
-app.get('/api/get/categories', (req, res) => {
-    connection.query('SELECT * FROM categories', (error, result) => {
-        error ? res.send(error) : res.send(result);
-    })
-})
-
 app.get('/api/get/categories/:companyId', (req, res) => {
     const companyId = req.params.companyId;
     connection.query('SELECT * FROM categories WHERE companyId = (?)', [companyId], (error, result) => {
@@ -60,12 +54,6 @@ app.post('/api/create/category', (req, res) => {
     const type = req.body.type;
     const companyId = req.body.companyId;
     connection.query('INSERT INTO categories (type, companyId) VALUES (?,?)', [type, companyId], (error, result) => {
-        error ? res.send(error) : res.send(result);
-    })
-})
-
-app.get('/api/get/items', (req, res) => {
-    connection.query('SELECT * FROM items', (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })
@@ -84,7 +72,7 @@ app.get('/api/get/items/:companyId', (req, res) => {
     })
 })
 
-app.get('/api/get/user-items/:userId', (req, res) => {
+app.get('/api/get/my-items/:userId', (req, res) => {
     const userId = req.params.userId;
     connection.query('SELECT * FROM items WHERE userId = (?)', [userId], (error, result) => {
         error ? res.send(error) : res.send(result);
@@ -116,7 +104,7 @@ app.get('/api/delete/item/:id', (req, res) => {
     })
 })
 
-app.post('/api/update/item/:id/:userId', (req, res) => {
+app.post('/api/borrow/item/:id/:userId', (req, res) => {
     const id = req.params.id;
     const userId = req.params.userId;
     connection.query('UPDATE items SET userId = (?) WHERE id = (?)', [userId, id], (error, result) => {
@@ -124,7 +112,7 @@ app.post('/api/update/item/:id/:userId', (req, res) => {
     })
 })
 
-app.post('/api/update/return-item/:id', (req, res) => {
+app.post('/api/return/item/:id', (req, res) => {
     const id = req.params.id;
     connection.query('UPDATE items SET userId = NULL WHERE id = (?)', [id], (error, result) => {
         error ? res.send(error) : res.send(result);

@@ -19,11 +19,12 @@ class AuthStore {
             const users = await Axios.get('http://localhost:3001/api/get/users');
             const user = users.data.find(u => u.email === credentials.email && u.password === credentials.password);
             const person = company || user;
-            if (company || user) {
+            if (person) {
                 runInAction(() => {
                     this.isLoggedIn = true;
                     this.loggedInUser = person;
                 })
+                console.log('Success', this.loggedInUser);
                 sessionStorage.setItem('person', JSON.stringify(this.loggedInUser));
                 this.rootStore.routerStore.goTo('dashboard');
             }
@@ -32,7 +33,7 @@ class AuthStore {
             }
         }
         catch (error) {
-            this.rootStore.notificationStore.error('Error');
+            this.rootStore.notificationStore.error(error.message);
         }
     }
 

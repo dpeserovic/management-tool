@@ -1,13 +1,11 @@
 import React from 'react';
-import { ManagementToolNav } from '../../../common/components'
-import { TextField } from '../../../common/components'
-import { Dropdown } from '../../../common/components'
+import { ManagementToolNav, TextField, Dropdown } from '../../../common/components';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function EditItemTemplate(props) {
-    const { form, categories, item, navigateVirtualWarehouse } = props.viewStore;
+    const { form, categories, navigateVirtualWarehouse } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />

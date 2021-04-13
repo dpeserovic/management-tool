@@ -1,29 +1,51 @@
 import React from 'react';
-import { ManagementToolNav } from '../../../common/components'
+import { ManagementToolNav, TextField } from '../../../common/components'
 
-import ListGroup from 'react-bootstrap/ListGroup';
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function MyProfileTemplate(props) {
-    const { isOwner, person, navigateDashboard } = props.viewStore;
+    const { isOwner, form, navigateDashboard } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
             <h1>My profile</h1>
             {isOwner ?
-                <ListGroup className="list" as="ul">
-                    <ListGroup.Item as='li'><h3>Key: {person.id}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>E-mail: {person.email}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>Name: {person.name}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>Name: {person.address}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>Name: {person.city}</h3></ListGroup.Item>
-                </ListGroup>
+                <Form>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('id')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('email')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'password'} field={form.$('password')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('name')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('address')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('city')} isDisabled={true} />
+                    </Form.Group>
+                </Form>
                 :
-                <ListGroup className="list" as="ul">
-                    <ListGroup.Item as='li'><h3>ID: {person.id}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>E-mail: {person.email}</h3></ListGroup.Item>
-                    <ListGroup.Item as='li'><h3>Company key: {person.companyId}</h3></ListGroup.Item>
-                </ListGroup>
+                <Form>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('id')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('email')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'password'} field={form.$('password')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <TextField type={'text'} field={form.$('companyId')} isDisabled={true} />
+                    </Form.Group>
+                </Form>
             }
             <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
         </div>
