@@ -186,7 +186,6 @@ describe(
 
 });
 
-
 describe(
     '/ (Login form)',
     () => {
@@ -250,7 +249,6 @@ describe(
         await page.keyboard.press('KeyA');
         await page.keyboard.up('Control');
         await page.keyboard.press('Backspace');
-
         await page.click('input#password--2');
         await page.keyboard.down('Control');
         await page.keyboard.press('KeyA');
