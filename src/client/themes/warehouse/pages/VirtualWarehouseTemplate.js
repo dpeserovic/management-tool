@@ -1,16 +1,18 @@
 import React from 'react';
-import { ManagementToolNav, BasicTable } from '../../../common/components'
+import { ManagementToolNav, VirtualWarehouseTable } from '../../../common/components'
+
+import Icon from '@material-ui/core/Icon';
 
 import Button from 'react-bootstrap/Button';
 
 function VirtualWarehouseTemplate(props) {
-    const { items, isOwner, actions, navigateDashboard } = props.viewStore;
+    const { navigateDashboard, items, isOwner, actions } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
             <h1>Virtual warehouse</h1>
-            <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
-            <BasicTable store={items} permission={isOwner} actions={actions} />
+            <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
+            <VirtualWarehouseTable items={items} isOwner={isOwner} actions={actions} />
         </div>
     )
 }
