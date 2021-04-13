@@ -1,5 +1,5 @@
 export { default as ManagementToolNav } from './ManagementToolNav';
-export { default as TextField } from './TextField';
-export { default as Dropdown } from './Dropdown';
-export { default as BasicTable } from './BasicTable';
-export { default as BackpackTable } from './BackpackTable';
+export { default as BasicInput } from './BasicInput';
+export { default as BasicDropdown } from './BasicDropdown';
+export { default as VirtualWarehouseTable } from './VirtualWarehouseTable';
+export { default as MyBackpackTable } from './MyBackpackTable';

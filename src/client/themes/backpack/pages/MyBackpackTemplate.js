@@ -1,5 +1,7 @@
 import React from 'react';
-import { ManagementToolNav, BackpackTable } from '../../../common/components';
+import { ManagementToolNav, MyBackpackTable } from '../../../common/components';
+
+import Icon from '@material-ui/core/Icon';
 
 import Button from 'react-bootstrap/Button';
 
@@ -9,8 +11,8 @@ function MyBackpackTemplate(props) {
         <div>
             <ManagementToolNav />
             <h1>My backpack</h1>
-            <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
-            <BackpackTable store={items} actions={actions} />
+            <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
+            <MyBackpackTable items={items} actions={actions} />
         </div>
     )
 }

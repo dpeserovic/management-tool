@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { computed } from 'mobx';
 
 class DashboardViewStore {
     @computed
