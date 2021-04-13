@@ -17,7 +17,6 @@ class VirtualWarehouseViewStore {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-        // this.person = JSON.parse(sessionStorage.getItem('person'));
         this.companyId = this.rootStore.authStore.loggedInUser.hasOwnProperty('name') ? this.rootStore.authStore.loggedInUser.id : this.rootStore.authStore.loggedInUser.companyId;
         this.userId = !this.rootStore.authStore.loggedInUser.hasOwnProperty('name') ? this.rootStore.authStore.loggedInUser.id : null;
         this.actions = {

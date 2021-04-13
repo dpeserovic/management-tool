@@ -1,6 +1,7 @@
 import React from 'react';
-import { ManagementToolNav } from '../../../common/components'
-import { TextField } from '../../../common/components'
+import { ManagementToolNav, BasicInput } from '../../../common/components';
+
+import Icon from '@material-ui/core/Icon';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,16 +14,16 @@ function CreateCategoryTemplate(props) {
             <h1>Create category</h1>
             <Form>
                 <Form.Group>
-                    <TextField type={'text'} field={form.$('type')} />
+                    <BasicInput type={'text'} field={form.$('type')} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Text>{form.error}</Form.Text>
                 </Form.Group>
                 <Form.Group>
-                    <Button variant="btn btn-dark" onClick={form.onSubmit}>Create</Button>
+                    <Button variant="btn btn-primary" onClick={form.onSubmit}><Icon fontSize='large'>category_outlined</Icon></Button>
                 </Form.Group>
             </Form>
-            <Button variant="btn btn-secondary" onClick={navigateDashboard}>Back</Button>
+            <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
         </div>
     )
 }

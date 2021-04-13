@@ -8,7 +8,6 @@ class AddItemViewStore {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-
         this.form = new AddItemForm({
             onSuccess: async (form) => {
                 const values = form.values();
