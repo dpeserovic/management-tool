@@ -1,7 +1,10 @@
+import { observable, action, runInAction } from 'mobx';
 import { CreateCategoryForm } from '../forms';
 import Axios from 'axios';
 
 class CreateCategoryViewStore {
+    @observable categories;
+
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.form = new CreateCategoryForm({
@@ -12,6 +15,7 @@ class CreateCategoryViewStore {
                     const createCategory = await Axios.post('http://localhost:3001/api/create/category', { type: values.type, companyId: this.rootStore.authStore.loggedInUser.id });
                     console.log('Success', createCategory);
                     if (!createCategory.data.errno) {
+                        await this.getCategories();
                         this.rootStore.notificationStore.success('Success');
                         this.form.clear();
                     }
@@ -28,6 +32,20 @@ class CreateCategoryViewStore {
                 console.log('Error', values);
                 this.rootStore.notificationStore.error('Error');
             }
+        })
+        this.actions = {
+            navigateEditCategory: async (id) => {
+                this.rootStore.routerStore.goTo('editCategory', { id: id })
+            }
+        }
+    }
+
+    @action.bound
+    getCategories = async () => {
+        const getCategories = await Axios.get('http://localhost:3001/api/get/categories/' + this.rootStore.authStore.loggedInUser.id);
+        console.log('Success', getCategories);
+        runInAction(() => {
+            this.categories = getCategories;
         })
     }
 

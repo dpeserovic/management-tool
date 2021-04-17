@@ -16,10 +16,10 @@ const rules = {
     type: 'required|string'
 }
 
-class RegisterCompanyForm extends FormBase {
+class CreateCategoryForm extends FormBase {
     constructor(hooks) {
         super({ fields, values, labels, placeholders, rules }, { hooks });
     }
 }
 
-export default RegisterCompanyForm;
+export default CreateCategoryForm;
