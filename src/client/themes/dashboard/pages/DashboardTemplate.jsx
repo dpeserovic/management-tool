@@ -7,12 +7,16 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function DashboardTemplate(props) {
-    const { isOwner, navigateCreateCategory, navigateAddItem, navigateMyBackpack, navigateVirtualWarehouse, navigateMyProfile, logOut } = props.viewStore;
+    const { isOwner, navigateSupervision, navigateCreateCategory, navigateAddItem, navigateMyBackpack, navigateVirtualWarehouse, navigateMyProfile, logOut } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
             {isOwner ?
                 <ListGroup className="list" as="ul">
+                    <ListGroup.Item as='li'>
+                        <h1>Supervision</h1>
+                        <Button variant='btn btn-secondary' onClick={navigateSupervision}><Icon fontSize='large'>camera_outlined</Icon></Button>
+                    </ListGroup.Item>
                     <ListGroup.Item as='li'>
                         <h1>Create category</h1>
                         <Button variant='btn btn-secondary' onClick={navigateCreateCategory}><Icon fontSize='large'>category_outlined</Icon></Button>

@@ -6,7 +6,15 @@ import { MyProfileTemplate } from '../../../themes/profile/pages';
 @inject(stores => ({ viewStore: new MyProfileViewStore(stores.rootStore) }))
 @observer
 class MyProfile extends React.Component {
+    async componentDidMount() {
+        await this.props.viewStore.getUsers();
+        await this.props.viewStore.getItems();
+        await this.props.viewStore.getCategories();
+    }
     render() {
+        if (!this.props.viewStore.users || !this.props.viewStore.items || !this.props.viewStore.categories) {
+            return <div />
+        }
         return (
             <MyProfileTemplate viewStore={this.props.viewStore} />
         )
