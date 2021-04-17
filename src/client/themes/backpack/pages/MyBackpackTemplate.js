@@ -11,6 +11,7 @@ function MyBackpackTemplate(props) {
         <div>
             <ManagementToolNav />
             <h1>My backpack</h1>
+            <h3>My total items: {items.data.length}</h3>
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
             <MyBackpackTable items={items} actions={actions} />
         </div>

@@ -24,6 +24,11 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'supervision',
+        pattern: '/supervision',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'createCategory',
         pattern: '/createCategory',
         beforeEnter: checkForUserSession
