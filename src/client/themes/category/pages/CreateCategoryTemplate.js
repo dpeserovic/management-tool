@@ -1,5 +1,5 @@
 import React from 'react';
-import { ManagementToolNav, BasicInput } from '../../../common/components';
+import { ManagementToolNav, BasicInput, EditCategoryTable } from '../../../common/components';
 
 import Icon from '@material-ui/core/Icon';
 
@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function CreateCategoryTemplate(props) {
-    const { form, navigateDashboard } = props.viewStore;
+    const { form, categories, actions, navigateDashboard } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -24,6 +24,7 @@ function CreateCategoryTemplate(props) {
                 </Form.Group>
             </Form>
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
+            <EditCategoryTable categories={categories} actions={actions} />
         </div>
     )
 }

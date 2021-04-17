@@ -6,6 +6,7 @@ import { Register } from './client/modules/membership/pages';
 import { Supervision } from './client/modules/supervision/pages';
 import { Dashboard } from './client/modules/dashboard/pages';
 import { CreateCategory } from './client/modules/category/pages';
+import { EditCategory } from './client/modules/category/pages';
 import { AddItem } from './client/modules/item/pages';
 import { MyBackpack } from './client/modules/backpack/pages';
 import { VirtualWarehouse } from './client/modules/warehouse/pages';
@@ -20,6 +21,7 @@ const viewMap = {
   supervision: <Supervision />,
   dashboard: <Dashboard />,
   createCategory: <CreateCategory />,
+  editCategory: <EditCategory />,
   addItem: <AddItem />,
   myBackpack: <MyBackpack />,
   virtualWarehouse: <VirtualWarehouse />,
