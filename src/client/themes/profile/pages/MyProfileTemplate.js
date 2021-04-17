@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function MyProfileTemplate(props) {
-    const { isOwner, form, navigateDashboard } = props.viewStore;
+    const { isOwner, form, users, items, categories, navigateDashboard } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -32,6 +32,15 @@ function MyProfileTemplate(props) {
                     <Form.Group>
                         <BasicInput type={'text'} field={form.$('city')} isDisabled={true} />
                     </Form.Group>
+                    <Form.Group>
+                        <h3>Total users: {users.data.length}</h3>
+                    </Form.Group>
+                    <Form.Group>
+                        <h3>Total items: {items.data.length}</h3>
+                    </Form.Group>
+                    <Form.Group>
+                        <h3>Total categories: {categories.data.length}</h3>
+                    </Form.Group>
                 </Form>
                 :
                 <Form>
@@ -46,6 +55,15 @@ function MyProfileTemplate(props) {
                     </Form.Group>
                     <Form.Group>
                         <BasicInput type={'text'} field={form.$('companyId')} isDisabled={true} />
+                    </Form.Group>
+                    <Form.Group>
+                        <h3>Total company's users: {users.data.length}</h3>
+                    </Form.Group>
+                    <Form.Group>
+                        <h3>Total company's items: {items.data.length}</h3>
+                    </Form.Group>
+                    <Form.Group>
+                        <h3>Total company's categories: {categories.data.length}</h3>
                     </Form.Group>
                 </Form>
             }

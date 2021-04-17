@@ -13,6 +13,10 @@ class DashboardViewStore {
         this.rootStore = rootStore;
     }
 
+    navigateSupervision = () => {
+        this.rootStore.routerStore.goTo('supervision');
+    }
+
     navigateCreateCategory = () => {
         this.rootStore.routerStore.goTo('createCategory');
     }

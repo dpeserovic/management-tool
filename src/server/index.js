@@ -16,6 +16,13 @@ app.get('/api/get/users', (req, res) => {
     })
 })
 
+app.get('/api/get/users/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM users WHERE companyId = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.post('/api/create/user', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -68,6 +75,20 @@ app.get('/api/get/item/:id', (req, res) => {
 app.get('/api/get/items/:companyId', (req, res) => {
     const companyId = req.params.companyId;
     connection.query('SELECT * FROM items WHERE userId IS NULL AND companyId = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.get('/api/get/all-items/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM items WHERE companyId = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.get('/api/get/all-taken-items/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM items WHERE UserId IS NOT NULL AND companyId = (?)', [companyId], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })

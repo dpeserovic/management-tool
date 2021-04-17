@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { RouterView } from 'mobx-state-router';
 import { Login } from './client/modules/membership/pages';
 import { Register } from './client/modules/membership/pages';
+import { Supervision } from './client/modules/supervision/pages';
 import { Dashboard } from './client/modules/dashboard/pages';
 import { CreateCategory } from './client/modules/category/pages';
 import { AddItem } from './client/modules/item/pages';
@@ -16,6 +17,7 @@ import { ToastContainer } from 'react-toastify';
 const viewMap = {
   login: <Login />,
   register: <Register />,
+  supervision: <Supervision />,
   dashboard: <Dashboard />,
   createCategory: <CreateCategory />,
   addItem: <AddItem />,
