@@ -34,6 +34,11 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'editCategory',
+        pattern: '/editCategory/:id',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'addItem',
         pattern: '/addItem',
         beforeEnter: checkForUserSession

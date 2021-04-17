@@ -50,6 +50,13 @@ app.post('/api/create/company', (req, res) => {
     })
 })
 
+app.get('/api/get/category/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT * FROM categories WHERE id = (?)', [id], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.get('/api/get/categories/:companyId', (req, res) => {
     const companyId = req.params.companyId;
     connection.query('SELECT * FROM categories WHERE companyId = (?)', [companyId], (error, result) => {
@@ -61,6 +68,14 @@ app.post('/api/create/category', (req, res) => {
     const type = req.body.type;
     const companyId = req.body.companyId;
     connection.query('INSERT INTO categories (type, companyId) VALUES (?,?)', [type, companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.post('/api/edit/category/:id', (req, res) => {
+    const id = req.params.id;
+    const type = req.body.type;
+    connection.query('UPDATE categories SET type = (?) WHERE id = (?)', [type, id], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })
