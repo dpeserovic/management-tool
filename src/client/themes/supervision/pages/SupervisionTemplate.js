@@ -8,16 +8,17 @@ import Button from 'react-bootstrap/Button';
 
 function SupervisionTemplate(props) {
     const { users, allTakenItems, allUnusedItemsLength, allTakenItemsPercentage, navigateDashboard } = props.viewStore;
+    debugger
     return (
         <div>
             <ManagementToolNav />
             <h1>Supervision</h1>
             <h3>Number of unused items: {allUnusedItemsLength}</h3>
             <h3>Number of taken items: {allTakenItems.data.length}</h3>
-            <h3>Percentage of taken items: {allTakenItemsPercentage}%</h3>
+            <h3>Percentage of taken items: {!isNaN(allTakenItemsPercentage) ? allTakenItemsPercentage : 0}%</h3>
             <ProgressBar id='progress-bar' animated now={allTakenItemsPercentage} />
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
-            <SupervisionTable users={users} />
+            {users.data.length > 0 && <SupervisionTable users={users} />}
         </div>
     )
 }

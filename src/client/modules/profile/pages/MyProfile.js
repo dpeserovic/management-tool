@@ -10,9 +10,10 @@ class MyProfile extends React.Component {
         await this.props.viewStore.getUsers();
         await this.props.viewStore.getItems();
         await this.props.viewStore.getCategories();
+        await this.props.viewStore.getCompany();
     }
     render() {
-        if (!this.props.viewStore.users || !this.props.viewStore.items || !this.props.viewStore.categories) {
+        if (!this.props.viewStore.users || !this.props.viewStore.items || !this.props.viewStore.categories || !this.props.viewStore.company) {
             return <div />
         }
         return (

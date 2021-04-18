@@ -38,6 +38,13 @@ app.get('/api/get/companies', (req, res) => {
     })
 })
 
+app.get('/api/get/company/:companyId', (req, res) => {
+    const companyId = req.params.companyId;
+    connection.query('SELECT * FROM companies WHERE id = (?)', [companyId], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.post('/api/create/company', (req, res) => {
     const id = req.body.id;
     const email = req.body.email;
