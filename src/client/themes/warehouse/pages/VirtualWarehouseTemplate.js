@@ -12,7 +12,7 @@ function VirtualWarehouseTemplate(props) {
             <ManagementToolNav />
             <h1>Virtual warehouse</h1>
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
-            <VirtualWarehouseTable items={items} isOwner={isOwner} actions={actions} />
+            {items.data.length > 0 && <VirtualWarehouseTable items={items} isOwner={isOwner} actions={actions} />}
         </div>
     )
 }

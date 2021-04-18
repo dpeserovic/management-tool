@@ -6,6 +6,7 @@ class MyProfileViewStore {
     @observable users;
     @observable items;
     @observable categories;
+    @observable company;
 
     @computed
     get isOwner() {
@@ -52,6 +53,15 @@ class MyProfileViewStore {
         console.log('Success', getCategories);
         runInAction(() => {
             this.categories = getCategories;
+        })
+    }
+
+    @action.bound
+    getCompany = async () => {
+        const getCompany = await Axios.get('http://localhost:3001/api/get/company/' + this.companyId);
+        console.log('Success', getCompany);
+        runInAction(() => {
+            this.company = getCompany;
         })
     }
 
