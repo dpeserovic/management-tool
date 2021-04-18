@@ -27,6 +27,7 @@ CREATE TABLE `categories` (
   `type` varchar(45) NOT NULL,
   `companyId` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `type_UNIQUE` (`type`),
   KEY `fk_company_id_idx` (`companyId`),
   KEY `fk_category_company_id_idx` (`companyId`),
   CONSTRAINT `fk_category_company_id` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`)
@@ -107,4 +108,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-13 23:24:20
+-- Dump completed on 2021-04-18 17:08:31
