@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function MyProfileTemplate(props) {
-    const { isOwner, form, users, items, categories, navigateDashboard } = props.viewStore;
+    const { isOwner, form, users, items, categories, company, navigateDashboard } = props.viewStore;
     return (
         <div>
             <ManagementToolNav />
@@ -32,15 +32,9 @@ function MyProfileTemplate(props) {
                     <Form.Group>
                         <BasicInput type={'text'} field={form.$('city')} isDisabled={true} />
                     </Form.Group>
-                    <Form.Group>
-                        <h3>Total users: {users.data.length}</h3>
-                    </Form.Group>
-                    <Form.Group>
-                        <h3>Total items: {items.data.length}</h3>
-                    </Form.Group>
-                    <Form.Group>
-                        <h3>Total categories: {categories.data.length}</h3>
-                    </Form.Group>
+                    <h3>Total users: {users.data.length}</h3>
+                    <h3>Total items: {items.data.length}</h3>
+                    <h3>Total categories: {categories.data.length}</h3>
                 </Form>
                 :
                 <Form>
@@ -56,15 +50,10 @@ function MyProfileTemplate(props) {
                     <Form.Group>
                         <BasicInput type={'text'} field={form.$('companyId')} isDisabled={true} />
                     </Form.Group>
-                    <Form.Group>
-                        <h3>Total company's users: {users.data.length}</h3>
-                    </Form.Group>
-                    <Form.Group>
-                        <h3>Total company's items: {items.data.length}</h3>
-                    </Form.Group>
-                    <Form.Group>
-                        <h3>Total company's categories: {categories.data.length}</h3>
-                    </Form.Group>
+                    <h1>My company</h1>
+                    <h3>Company name: {company.data[0].name}</h3>
+                    <h3>Company address: {company.data[0].address}</h3>
+                    <h3>Company city: {company.data[0].city}</h3>
                 </Form>
             }
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>

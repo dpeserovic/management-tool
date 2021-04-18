@@ -24,7 +24,7 @@ function CreateCategoryTemplate(props) {
                 </Form.Group>
             </Form>
             <Button variant="btn btn-secondary" onClick={navigateDashboard}><Icon fontSize='large'>keyboard_backspace_outlined</Icon></Button>
-            <EditCategoryTable categories={categories} actions={actions} />
+            {categories.data.length > 0 && <EditCategoryTable categories={categories} actions={actions} />}
         </div>
     )
 }
