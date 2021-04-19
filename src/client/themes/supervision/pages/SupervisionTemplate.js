@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button';
 
 function SupervisionTemplate(props) {
     const { users, allTakenItems, allUnusedItemsLength, allTakenItemsPercentage, navigateDashboard } = props.viewStore;
-    debugger
     return (
         <div>
             <ManagementToolNav />

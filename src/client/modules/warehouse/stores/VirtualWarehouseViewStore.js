@@ -23,6 +23,9 @@ class VirtualWarehouseViewStore {
             navigateEditItem: (id) => {
                 this.rootStore.routerStore.goTo('editItem', { id: id });
             },
+            navigateItemLogs: (id) => {
+                this.rootStore.routerStore.goTo('itemLogs', { id: id });
+            },
             deleteItem: async (id) => {
                 const deleteItem = await Axios.get('http://localhost:3001/api/delete/item/' + id);
                 console.log('Success', deleteItem);
@@ -35,7 +38,7 @@ class VirtualWarehouseViewStore {
                 }
             },
             borrowItem: async (id) => {
-                const borrowItem = await Axios.post('http://localhost:3001/api/borrow/item/' + id + '/' + this.userId);
+                const borrowItem = await Axios.post('http://localhost:3001/api/borrow/item/' + id + '/' + this.userId, { dateFrom: Date.now() });
                 console.log('Success', borrowItem);
                 if (!borrowItem.data.errno) {
                     this.rootStore.notificationStore.success('Success')

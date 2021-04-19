@@ -10,11 +10,13 @@ class MyBackpackViewStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.actions = {
-            returnItem: async (id) => {
+            returnItem: async (id, dateFrom) => {
                 try {
                     const returnItem = await Axios.post('http://localhost:3001/api/return/item/' + id);
                     console.log('Success', returnItem);
-                    if (!returnItem.data.errno) {
+                    const createLog = await Axios.post('http://localhost:3001/api/create/log/', { userId: this.rootStore.authStore.loggedInUser.id, itemId: id, dateFrom: dateFrom, dateTo: Date.now() });
+                    console.log('Success', createLog);
+                    if (!returnItem.data.errno && !createLog.data.errno) {
                         await this.getItems();
                         this.rootStore.notificationStore.success('Success');
                     }
