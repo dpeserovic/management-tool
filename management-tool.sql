@@ -67,6 +67,7 @@ CREATE TABLE `items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `userId` int DEFAULT NULL,
+  `dateFrom` bigint DEFAULT NULL,
   `companyId` varchar(45) NOT NULL,
   `categoryId` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -76,6 +77,21 @@ CREATE TABLE `items` (
   CONSTRAINT `fk_category_id` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_item_company_id` FOREIGN KEY (`companyId`) REFERENCES `companies` (`id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `logs` (
+  `userId` int NOT NULL,
+  `itemId` int NOT NULL,
+  `dateFrom` bigint NOT NULL,
+  `dateTo` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,4 +124,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-18 17:08:31
+-- Dump completed on 2021-04-19 18:35:00

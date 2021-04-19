@@ -158,7 +158,7 @@ app.post('/api/borrow/item/:id/:userId', (req, res) => {
 
 app.post('/api/return/item/:id', (req, res) => {
     const id = req.params.id;
-    connection.query('UPDATE items SET userId = NULL WHERE id = (?)', [id], (error, result) => {
+    connection.query('UPDATE items SET userId = NULL, dateFrom = NULL WHERE id = (?)', [id], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })
