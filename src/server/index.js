@@ -150,7 +150,8 @@ app.get('/api/delete/item/:id', (req, res) => {
 app.post('/api/borrow/item/:id/:userId', (req, res) => {
     const id = req.params.id;
     const userId = req.params.userId;
-    connection.query('UPDATE items SET userId = (?) WHERE id = (?)', [userId, id], (error, result) => {
+    const dateFrom = req.body.dateFrom
+    connection.query('UPDATE items SET userId = (?), dateFrom = (?) WHERE id = (?)', [userId, dateFrom, id], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })
@@ -158,6 +159,16 @@ app.post('/api/borrow/item/:id/:userId', (req, res) => {
 app.post('/api/return/item/:id', (req, res) => {
     const id = req.params.id;
     connection.query('UPDATE items SET userId = NULL WHERE id = (?)', [id], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
+app.post('/api/create/log', (req, res) => {
+    const userId = req.body.userId;
+    const itemId = req.body.itemId;
+    const dateFrom = req.body.dateFrom;
+    const dateTo = req.body.dateTo;
+    connection.query('INSERT INTO logs (userId, itemId, dateFrom, dateTo) VALUES (?,?,?,?)', [userId, itemId, dateFrom, dateTo], (error, result) => {
         error ? res.send(error) : res.send(result);
     })
 })
