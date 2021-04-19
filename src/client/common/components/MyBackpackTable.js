@@ -18,6 +18,7 @@ function MyBackpackTable(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell align='center'>Item</TableCell>
+                        <TableCell align='center'>Date from</TableCell>
                         <TableCell align='center'>Return</TableCell>
                     </TableRow>
                 </TableHead>
@@ -25,7 +26,8 @@ function MyBackpackTable(props) {
                     {items.data.map(i => (
                         <TableRow key={i.id}>
                             <TableCell align='center'>{i.name} - [{i.type}]</TableCell>
-                            <TableCell align='center'><Button variant='btn btn-primary' onClick={e => actions.returnItem(i.id)}><Icon fontSize='small'>remove_outlined</Icon></Button></TableCell>
+                            <TableCell align='center'>{new Date(i.dateFrom).getDate() + '.' + (new Date(i.dateFrom).getMonth() + 1) + '.' + new Date(i.dateFrom).getFullYear()}</TableCell>
+                            <TableCell align='center'><Button variant='btn btn-primary' onClick={e => actions.returnItem(i.id, i.dateFrom)}><Icon fontSize='small'>remove_outlined</Icon></Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
