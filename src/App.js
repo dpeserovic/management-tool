@@ -11,6 +11,7 @@ import { AddItem } from './client/modules/item/pages';
 import { MyBackpack } from './client/modules/backpack/pages';
 import { VirtualWarehouse } from './client/modules/warehouse/pages';
 import { EditItem } from './client/modules/item/pages';
+import { ItemHistory } from './client/modules/item/pages';
 import { MyProfile } from './client/modules/profile/pages';
 import { NotFound } from './NotFound';
 import { ToastContainer } from 'react-toastify';
@@ -26,6 +27,7 @@ const viewMap = {
   myBackpack: <MyBackpack />,
   virtualWarehouse: <VirtualWarehouse />,
   editItem: <EditItem />,
+  itemHistory: <ItemHistory />,
   myProfile: <MyProfile />,
   notFound: <NotFound />
 }
