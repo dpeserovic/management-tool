@@ -23,8 +23,8 @@ class VirtualWarehouseViewStore {
             navigateEditItem: (id) => {
                 this.rootStore.routerStore.goTo('editItem', { id: id });
             },
-            navigateItemLogs: (id) => {
-                this.rootStore.routerStore.goTo('itemLogs', { id: id });
+            navigateItemHistory: (id) => {
+                this.rootStore.routerStore.goTo('itemHistory', { id: id });
             },
             deleteItem: async (id) => {
                 const deleteItem = await Axios.get('http://localhost:3001/api/delete/item/' + id);

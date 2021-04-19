@@ -173,6 +173,13 @@ app.post('/api/create/log', (req, res) => {
     })
 })
 
+app.get('/api/get/logs/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT * FROM logs WHERE itemId = (?)', [id], (error, result) => {
+        error ? res.send(error) : res.send(result);
+    })
+})
+
 app.listen(port, () => {
     console.log("Running server on port " + port);
 })

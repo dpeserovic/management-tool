@@ -59,6 +59,11 @@ export const routes = [
         beforeEnter: checkForUserSession
     },
     {
+        name: 'itemHistory',
+        pattern: '/itemHistory/:id',
+        beforeEnter: checkForUserSession
+    },
+    {
         name: 'myProfile',
         pattern: '/myProfile',
         beforeEnter: checkForUserSession

@@ -5,3 +5,4 @@ export { default as VirtualWarehouseTable } from './VirtualWarehouseTable';
 export { default as MyBackpackTable } from './MyBackpackTable';
 export { default as SupervisionTable } from './SupervisionTable';
 export { default as EditCategoryTable } from './EditCategoryTable';
+export { default as HistoryTable } from './HistoryTable';
