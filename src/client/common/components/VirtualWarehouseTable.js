@@ -21,6 +21,7 @@ function BasicTable(props) {
                             <TableCell align='center'>Name</TableCell>
                             <TableCell align='center'>Category</TableCell>
                             <TableCell align='center'>Edit</TableCell>
+                            <TableCell align='center'>History</TableCell>
                             <TableCell align='center'>Delete</TableCell>
                         </TableRow>
                     </TableHead>
@@ -30,6 +31,7 @@ function BasicTable(props) {
                                 <TableCell align='center'>{i.name}</TableCell>
                                 <TableCell align='center'>{i.type}</TableCell>
                                 <TableCell align='center'><Button variant='btn btn-secondary' onClick={e => actions.navigateEditItem(i.id)}><Icon fontSize='small'>edit_outlined</Icon></Button></TableCell>
+                                <TableCell align='center'><Button variant='btn btn-secondary' onClick={e => actions.navigateItemHistory(i.id)}><Icon fontSize='small'>history_outlined</Icon></Button></TableCell>
                                 <TableCell align='center'><Button variant='btn btn-danger' onClick={e => actions.deleteItem(i.id)}><Icon fontSize='small'>delete_outlined</Icon></Button></TableCell>
                             </TableRow>
                         ))}
